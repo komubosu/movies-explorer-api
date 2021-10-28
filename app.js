@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const NotFoundError = require('./errors/not-found-err');
+const centralizedErrorHandler = require('./middlewares/errors-handler');
 
 const { PORT = 3000, NODE_ENV, BD_PATH } = process.env;
 
@@ -24,20 +24,9 @@ app.use(requestLogger);
 
 app.use('/', require('./routes/index'));
 
-app.use((req, res, next) => {
-  next(new NotFoundError('Неверный адрес'));
-});
-
 app.use(errorLogger);
 app.use(errors());
-
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-
-  res.status(statusCode).send({ message: statusCode === 500 ? 'На сервере произошла ошибка' : message });
-
-  next();
-});
+app.use(centralizedErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
