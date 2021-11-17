@@ -40,6 +40,6 @@ module.exports.addMovieValidation = celebrate({
 
 module.exports.removeMovieValidation = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required(),
+    movieId: Joi.string().required().length(24).hex(),
   }),
 });

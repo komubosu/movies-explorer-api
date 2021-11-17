@@ -6,21 +6,22 @@ const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { mongoosePath, mongooseRules } = require('./middlewares/mongoose-settings');
 const centralizedErrorHandler = require('./middlewares/errors-handler');
 
-const { PORT = 3000, NODE_ENV, BD_PATH } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
-mongoose.connect(NODE_ENV === 'production' ? BD_PATH : 'mongodb://localhost:27017/bitfilmsdb', {
-  useNewUrlParser: true,
-})
+mongoose.connect(mongoosePath, mongooseRules)
   .catch((err) => console.log(err));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestLogger);
+
+app.use(require('./middlewares/rate-limiter'));
 
 app.use('/', require('./routes/index'));
 
