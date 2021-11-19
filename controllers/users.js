@@ -82,7 +82,10 @@ module.exports.signin = (req, res, next) => {
 
 module.exports.signout = (req, res, next) => {
   res
-    .clearCookie('jwt')
+    .clearCookie('jwt', {
+      sameSite: 'none',
+      secure: true,
+    })
     .send({ message: 'Вы успешно вышли из аккаунта' })
     .catch((err) => handleError(err, next));
 };
