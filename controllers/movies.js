@@ -61,7 +61,7 @@ module.exports.removeMovie = (req, res, next) => {
       if (!movie.owner.equals(req.user._id)) {
         throw new ForbiddenError('У вас нет прав удалить фильм из избранного');
       }
-      return Movie.findOneAndRemove(movieId);
+      return Movie.findOneAndRemove({ movieId });
     })
     .then((movie) => res.send(movie))
     .catch((err) => handleError(err, next));
