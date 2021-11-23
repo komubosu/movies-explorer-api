@@ -53,7 +53,7 @@ module.exports.addMovie = (req, res, next) => {
 module.exports.removeMovie = (req, res, next) => {
   const { movieId } = req.params;
 
-  Movie.findOne({ movieId })
+  Movie.findOne(movieId)
     .then((movie) => {
       if (movie === null) {
         throw new NotFoundError('Фильм с указанным movieId не найден');
