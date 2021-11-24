@@ -59,7 +59,7 @@ module.exports.removeMovie = (req, res, next) => {
       if (movie === null) {
         throw new NotFoundError('Фильм с указанным movieId не найден');
       }
-      if (!movie.owner.equals(owner)) {
+      if (!movie.owner.equals({ owner })) {
         throw new ForbiddenError('У вас нет прав удалить фильм из избранного');
       }
       return Movie.findOneAndRemove({ movieId });
