@@ -51,7 +51,7 @@ module.exports.addMovie = (req, res, next) => {
 };
 
 module.exports.removeMovie = (req, res, next) => {
-  const { owner } = req.user._id;
+  const owner = req.user._id;
   const { movieId } = req.params;
 
   Movie.findOne({ movieId })
@@ -59,7 +59,7 @@ module.exports.removeMovie = (req, res, next) => {
       if (movie === null) {
         throw new NotFoundError('Фильм с указанным movieId не найден');
       }
-      if (!movie.owner.equals(req.user._id)) {
+      if (!movie.owner.equals(owner)) {
         throw new ForbiddenError('У вас нет прав удалить фильм из избранного');
       }
       return Movie.findOneAndRemove({ movieId });
