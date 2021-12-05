@@ -1,10 +1,46 @@
 # movies-explorer-api
 ## Бэкенд часть приложения по поиску фильмов.
-## Доступ к api - `http://localhost:3001/`
+
+* [Настройка](#setup)
+* [Работа api](#api)
+* [Статусы ошибок](#errors)
+* [NPM Модули](#npm)
 
 ---
 
-## Работа api
+<h2 name="setup">Настройка</h2>
+
+0. Для управления базами данных приложение использует MongoDB
+
+1. Клонировать репозиторий
+
+    ```bash
+    git clone https://github.com/komubosu/movies-explorer-api.git
+    ```
+
+2. Установить зависимости
+
+    ```bash
+    npm i
+    ```
+
+3. Запустить MongoDB
+
+    ```bash
+    mongod
+    ```
+
+3. Запустить виртуальный сервер
+
+    ```bash
+    npm run start
+    ```
+
+4. Вы превосходны
+
+---
+
+<h2 name="api">Работа api</h2>
 
 ### Пользователь
 * `POST /signup` - Регистариця нового пользователя. Принимает `email`, `password` и `name`. В ответе возвращает `email` и `name`.
@@ -18,7 +54,10 @@
 * `POST /movies` - Сохраняет фильм в избранное. Принимает `country`, `director`, `duration`, `year`, `description`, `image`, `trailer`, `thumbnail`, `movieId`, `nameRU` и `nameEN`. В ответе возвращает `country`, `director`, `duration`, `year`, `description`, `image`, `trailer`, `thumbnail`, `owner`, `movieId`, `nameRU` и `nameEN`.
 * `GET /movies/:movieId` - Удаляет фильм из избранного. В ответе возвращает `country`, `director`, `duration`, `year`, `description`, `image`, `trailer`, `thumbnail`, `owner`, `movieId`, `nameRU` и `nameEN`.
 
-## Статусы ошибок
+---
+
+<h2 name="errors">Статусы ошибок</h2>
+
 * `400 Bad Request` - Неверный запрос.
 * `401 Unauthorized` - Не хватает прав для запроса.
 * `403 Forbidden` - Не хватает прав для действия.
@@ -28,7 +67,8 @@
 
 ---
 
-## NPM Модули
+<h2 name="npm">NPM Модули</h2>
+
 * `express`
 * `express-winston`
 * `winston`
