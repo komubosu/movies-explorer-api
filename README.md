@@ -1,6 +1,6 @@
 # movies-explorer-api
 ## Бэкенд часть приложения по поиску фильмов.
-## Доступ к api - `https://api.komubosu.films.nomoredomains.rocks/`
+## Доступ к api - `http://localhost:3001/`
 
 ---
 
