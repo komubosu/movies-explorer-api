@@ -1,4 +1,4 @@
-const whitelist = ['http://localhost:3000', 'https://komubosu.films.nomoredomains.rocks', 'http://komubosu.films.nomoredomains.rocks'];
+const whitelist = ['http://localhost:3000'];
 
 module.exports = (req, callback) => {
   let corsOptions;
