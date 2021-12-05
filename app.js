@@ -10,7 +10,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { mongoosePath, mongooseRules } = require('./middlewares/mongoose-settings');
 const centralizedErrorHandler = require('./middlewares/errors-handler');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const app = express();
 
